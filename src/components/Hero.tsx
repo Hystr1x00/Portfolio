@@ -1,235 +1,460 @@
-'use client'
-import { useEffect, useRef, useState } from 'react'
+"use client";
 
-const roles = ['Full Stack Developer', 'React / Next.js Expert', 'Node.js Engineer', 'UI/UX Craftsman', 'System Architect']
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [typing, setTyping] = useState(true)
-  const [lineIndex, setLineIndex] = useState(0)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Typewriter effect
+
+
+
+interface PixelBirdProps {
+  startX: string;
+  endX: string;
+  yRange: string[];
+  duration: number;
+  delay: number;
+  mobileSize?: string;
+  desktopSize?: string;
+}
+
+const PixelBird = ({
+  startX,
+  endX,
+  yRange,
+  duration,
+  delay,
+  mobileSize = "w-16 h-16",
+  desktopSize = "sm:w-24 sm:h-24 lg:w-32 lg:h-32"
+}: PixelBirdProps) => {
+  const [frame, setFrame] = useState(1);
+  const isFlyingLeft = parseInt(startX) > parseInt(endX);
+
   useEffect(() => {
-    const current = roles[roleIndex]
-    if (typing) {
-      if (displayed.length < current.length) {
-        const t = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 60)
-        return () => clearTimeout(t)
-      } else {
-        const t = setTimeout(() => setTyping(false), 2000)
-        return () => clearTimeout(t)
-      }
-    } else {
-      if (displayed.length > 0) {
-        const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 30)
-        return () => clearTimeout(t)
-      } else {
-        setRoleIndex((i) => (i + 1) % roles.length)
-        setTyping(true)
-      }
-    }
-  }, [displayed, typing, roleIndex])
-
-  // Canvas particle field
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')!
-    let animId: number
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    interface Particle {
-      x: number; y: number; vx: number; vy: number; size: number; opacity: number
-    }
-
-    const particles: Particle[] = Array.from({ length: 80 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      size: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.5 + 0.1,
-    }))
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
-      // Draw connections
-      particles.forEach((p, i) => {
-        particles.slice(i + 1).forEach(q => {
-          const dist = Math.hypot(p.x - q.x, p.y - q.y)
-          if (dist < 120) {
-            ctx.beginPath()
-            ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.5
-            ctx.moveTo(p.x, p.y)
-            ctx.lineTo(q.x, q.y)
-            ctx.stroke()
-          }
-        })
-      })
-
-      // Draw particles
-      particles.forEach(p => {
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(0, 212, 255, ${p.opacity})`
-        ctx.fill()
-        
-        p.x += p.vx
-        p.y += p.vy
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
-      })
-
-      animId = requestAnimationFrame(draw)
-    }
-    draw()
-    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize) }
-  }, [])
-
-  const terminalLines = [
-    { cmd: '$ whoami', out: 'fullstack_developer' },
-    { cmd: '$ uptime', out: '3+ years of shipping products' },
-    { cmd: '$ cat skills.txt', out: 'TS · React · Node · PostgreSQL · Redis · Docker · AWS' },
-    { cmd: '$ git log --oneline', out: '47 public repos, 1200+ commits' },
-  ]
+    const interval = setInterval(() => {
+      setFrame((prev) => (prev % 7) + 1);
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden grid-bg">
-      {/* Canvas particles */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full opacity-60"
+    <motion.div
+      className="absolute z-[40] pointer-events-none"
+      initial={{ x: startX, y: yRange[0], opacity: 1 }}
+      animate={{
+        x: [startX, endX],
+        y: yRange
+      }}
+      transition={{
+        duration,
+        delay,
+        repeat: Infinity,
+        ease: "linear",
+        y: {
+          duration: duration / 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }
+      }}
+    >
+      <div className={`relative ${mobileSize} ${desktopSize}`}>
+        <Image
+          src={`/bird/${frame}.png`}
+          alt="Flying Bird"
+          fill
+          // If flying Left (startX > endX), and original faces Left, NO flip.
+          // If flying Right (startX < endX), and original faces Left, NEED flip.
+          className={`object-contain pixelated ${!isFlyingLeft ? "-scale-x-100" : ""}`}
+        />
+      </div>
+    </motion.div>
+  );
+};
+
+interface PixelCloudProps {
+  src: string;
+  x: string;
+  y: string;
+  duration: number;
+  delay: number;
+  size: string;
+  zIndex?: number;
+  bobDistance?: number;
+}
+
+const PixelCloud = ({
+  src,
+  x,
+  y,
+  duration,
+  delay,
+  size,
+  zIndex = 1,
+  bobDistance = 30
+}: PixelCloudProps) => {
+  return (
+    <motion.div
+      className="absolute pointer-events-none"
+      style={{ left: x, top: y, zIndex }}
+      initial={{ opacity: 0, y: 0 }}
+      animate={{
+        y: [0, bobDistance, 0],
+        opacity: 0.9
+      }}
+      transition={{
+        y: {
+          duration,
+          delay,
+          repeat: Infinity,
+          ease: "easeInOut"
+        },
+        opacity: {
+          duration: 1,
+          delay: 0.5
+        }
+      }}
+    >
+      <div className={`relative ${size}`}>
+        <Image
+          src={src}
+          alt="Cloud"
+          fill
+          className="object-contain pixelated"
+        />
+      </div>
+    </motion.div>
+  );
+};
+
+export default function Hero() {
+  const [text, setText] = useState("");
+  const fullText = "Hallooo everyone!!!";
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
+  const yTranslate = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const charY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const cloudFarY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const cloudNearY = useTransform(scrollYProgress, [0, 1], [0, -250]);
+  const birdY = useTransform(scrollYProgress, [0, 1], [0, -150]);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (text.length < fullText.length) {
+      timeout = setTimeout(() => {
+        setText(fullText.slice(0, text.length + 1));
+      }, 100);
+    } else {
+      timeout = setTimeout(() => {
+        setText("");
+      }, 2000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text]);
+
+  // Preload bird frames
+  useEffect(() => {
+    for (let i = 1; i <= 7; i++) {
+      const img = new window.Image();
+      img.src = `/bird/${i}.png`;
+    }
+  }, []);
+
+  return (
+    <section
+      id="hero"
+      ref={containerRef}
+      className="relative min-h-screen w-full flex flex-col items-center overflow-hidden bg-[#87CEEB] pixelated"
+    >
+      {/* Background Layer (Slowest) */}
+      <motion.div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat w-full h-full pixelated"
+        style={{ backgroundImage: "url('/hero_bg.jpg')", y: bgY, scale: 1.3 }}
       />
 
-      {/* Glowing orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(0,96,255,0.08)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.06)_0%,transparent_70%)] pointer-events-none animate-pulse-slow" />
+      {/* Birds Layer */}
+      <motion.div style={{ y: birdY }} className="absolute inset-0 pointer-events-none z-50">
+        <PixelBird
+          startX="150vw"
+          endX="-50vw"
+          yRange={["20vh", "15vh", "25vh", "20vh"]}
+          duration={20}
+          delay={0}
+          mobileSize="w-20 h-20"
+          desktopSize="sm:w-32 sm:h-32 lg:w-40 lg:h-40"
+        />
+        <PixelBird
+          startX="-50vw"
+          endX="150vw"
+          yRange={["40vh", "45vh", "35vh", "40vh"]}
+          duration={30}
+          delay={5}
+          mobileSize="w-16 h-16"
+          desktopSize="sm:w-24 sm:h-24 lg:w-32 lg:h-32"
+        />
+        <PixelBird
+          startX="160vw"
+          endX="-60vw"
+          yRange={["10vh", "8vh", "12vh", "10vh"]}
+          duration={25}
+          delay={10}
+          mobileSize="w-12 h-12"
+          desktopSize="sm:w-16 sm:h-16 lg:w-20 lg:h-20"
+        />
+      </motion.div>
 
-      {/* Scan line */}
-      <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff33] to-transparent animate-[scan_8s_linear_infinite] pointer-events-none" />
+      {/* Floating Clouds Layer (Parallax Far) */}
+      <motion.div style={{ y: cloudFarY }} className="absolute inset-0 pointer-events-none z-5">
+        <PixelCloud
+          src="/cloud_1.png"
+          x="-15%"
+          y="20%"
+          duration={5}
+          delay={0}
+          size="w-[400px] h-[200px] sm:w-[600px] sm:h-[300px] lg:w-[1000px] lg:h-[500px]"
+          zIndex={1}
+          bobDistance={50}
+        />
+      </motion.div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Main content */}
-          <div className="space-y-8">
-            {/* Status badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 glass rounded-sm border-l-2 border-[#00d4ff]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-mono text-xs text-slate-400 tracking-widest">AVAILABLE FOR WORK</span>
+      {/* Floating Clouds Layer (Parallax Near) */}
+      <motion.div style={{ y: cloudNearY }} className="absolute inset-0 pointer-events-none z-20">
+        <PixelCloud
+          src="/cloud_2.png"
+          x="75%"
+          y="0%"
+          duration={7}
+          delay={1}
+          size="w-[500px] h-[250px] sm:w-[800px] sm:h-[400px] lg:w-[800px] lg:h-[600px]"
+          zIndex={100}
+          bobDistance={-60}
+        />
+        <PixelCloud
+          src="/cloud_1.png"
+          x="62%"
+          y="50%"
+          duration={6}
+          delay={2}
+          size="w-[300px] h-[150px] sm:w-[500px] sm:h-[250px] lg:w-[800px] lg:h-[400px]"
+          zIndex={1}
+          bobDistance={40}
+        />
+        <PixelCloud
+          src="/cloud_2.png"
+          x="38%"
+          y="65%"
+          duration={8}
+          delay={0.5}
+          size="w-[400px] h-[200px] sm:w-[700px] sm:h-[350px] lg:w-[600px] lg:h-[500px]"
+          zIndex={1}
+          bobDistance={-45}
+        />
+        <PixelCloud
+          src="/cloud_1.png"
+          x="-5%"
+          y="60%"
+          duration={9}
+          delay={3}
+          size="w-[500px] h-[250px] sm:w-[900px] sm:h-[450px] lg:w-[1400px] lg:h-[700px]"
+          zIndex={1}
+          bobDistance={60}
+        />
+      </motion.div>
+
+      {/* Content Layer */}
+      <motion.div
+        style={{ opacity, y: yTranslate }}
+        className="relative z-10 flex flex-col items-center w-full min-h-screen flex-1 pt-8 sm:pt-10 sm:px:10 pb-5"
+      >
+        {/* Giant Title */}
+        <motion.h1
+          className="text-black text-[12vw] sm:text-[12vw] md:text-[11.5vw] lg:text-[12vw] tracking-tighter uppercase text-center leading-[0.8] w-full m-0 p-0"
+          style={{
+            textShadow: '8px 8px 0 #fff, -8px -8px 0 #fff, 8px -8px 0 #fff, -8px 8px 0 #fff, 0 8px 0 #fff, 8px 0 0 #fff, 0 -8px 0 #fff, -8px 0 0 #fff, 12px 12px 0 #fff, -12px 0 0 #fff, 0 12px 0 #fff, 0 -12px 0 #fff, -12px -12px 0 #fff, 12px -12px 0 #fff, -12px 12px 0 #fff'
+          }}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          PORTFOLIO
+        </motion.h1>
+
+
+        {/* Info Box / Highlighted Text */}
+        <motion.div
+          className="-mt-16 sm:-mt-24 md:-mt-32 lg:-mt-36 max-w-2xl text-center mx-4 z-20 flex flex-col items-center gap-0"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+        >
+          <motion.span
+            className="bg-[#fcee6d] text-black text-[10px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            Pixelated mind!
+          </motion.span>
+          <motion.span
+            className="bg-[#fcee6d] text-black text-[10px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            Creating Code, System, and Ideas.
+          </motion.span>
+          <motion.span
+            className="bg-[#fcee6d] text-black text-[10px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            Welcome to my dev world!
+          </motion.span>
+        </motion.div>
+
+        {/* Center Character & Dialogue Box */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full mt-0 mb-24 z-10 relative">
+
+          {/* Character */}
+          <motion.div
+            style={{ y: charY }}
+            className="relative w-full max-w-[400px] sm:max-w-[700px] lg:max-w-[800px] h-[55vh] sm:h-[65vh] lg:h-[75vh] hover:scale-105 transition-transform duration-200 cursor-pointer"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 2,
+              delay: 0.8,
+              ease: "linear",
+              opacity: { duration: 1.5, delay: 0.8 }
+            }}
+          >
+            <Image
+              src="/noy.png"
+              alt="Pixel Character"
+              fill
+              className="object-contain pixelated drop-shadow-[0_8px_0_rgba(0,0,0,0.5)]"
+              priority
+            />
+          </motion.div>
+
+
+          {/* Dialogue Box */}
+          <motion.div
+            className="absolute bottom-12 sm:bottom-16 lg:bottom-50 z-20 w-[100%] md:w-[600px] lg:w-[800px] flex flex-col items-start"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+          >
+            {/* Name Tag */}
+            <div className="bg-black border-2 border-white px-3 py-1 mb-1 shadow-[0_0_0_2px_#000]">
+              <span className="text-white text-[10px] sm:text-xs tracking-widest">Ganny</span>
             </div>
 
-            {/* Name */}
-            <div>
-              <p className="font-mono text-[#00d4ff] text-sm tracking-widest mb-3 opacity-70">{'// HELLO WORLD'}</p>
-              <h1 className="font-display text-5xl md:text-7xl font-800 leading-none tracking-tight text-white mb-4">
-                YOUR
-                <br />
-                <span className="gradient-text">NAME</span>
-                <span className="text-[#00d4ff33]">.</span>
-              </h1>
-
-              {/* Typewriter */}
-              <div className="flex items-center gap-1 h-8">
-                <span className="font-mono text-base text-slate-300">{displayed}</span>
-                <span className="w-0.5 h-5 bg-[#00d4ff] blink" />
-              </div>
+            {/* Main Dialogue Box */}
+            <div className="bg-black border-2 border-white w-full p-4 sm:p-6 shadow-[0_0_0_2px_#000] relative flex justify-between items-center">
+              <p className="text-white text-[10px] sm:text-sm lg:text-base tracking-widest min-h-[1.5em]">
+                {text}
+              </p>
+              <span className="text-gray-400 animate-pulse text-sm sm:text-xl ml-4">▼</span>
             </div>
+          </motion.div>
 
-            {/* Description */}
-            <p className="font-body text-slate-400 text-lg leading-relaxed max-w-md">
-              I craft digital experiences that sit at the intersection of{' '}
-              <span className="text-white">engineering precision</span> and{' '}
-              <span className="text-[#00d4ff]">creative design</span>. From idea to deployment.
-            </p>
+        </div>
+      </motion.div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#projects"
-                className="group relative px-6 py-3 bg-[#00d4ff] text-[#020818] font-mono text-sm font-bold tracking-widest overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,212,255,0.4)]"
-              >
-                <span className="relative z-10">VIEW WORK</span>
-                <div className="absolute inset-0 bg-white translate-x-full group-hover:translate-x-0 transition-transform duration-300 opacity-20" />
-              </a>
-              <a
-                href="#contact"
-                className="px-6 py-3 border border-[#00d4ff33] text-slate-300 font-mono text-sm tracking-widest hover:border-[#00d4ff] hover:text-[#00d4ff] transition-all duration-300"
-              >
-                GET IN TOUCH
-              </a>
-            </div>
+      {/* Decorative Pixels for bottom transition */}
+      <div className="absolute bottom-0 w-full h-[256px] z-50 pointer-events-none overflow-hidden">
 
-            {/* Quick stats */}
-            <div className="grid grid-cols-3 gap-6 pt-4 border-t border-[#00d4ff0f]">
-              {[['3+', 'Years Exp'], ['20+', 'Projects'], ['10+', 'Clients']].map(([num, label]) => (
-                <div key={label}>
-                  <div className="font-display text-3xl font-bold text-[#00d4ff]">{num}</div>
-                  <div className="font-mono text-xs text-slate-500 tracking-wider mt-1">{label}</div>
-                </div>
-              ))}
-            </div>
+        {/* Base dark bar */}
+        <div className="absolute bottom-0 w-full h-[32px] bg-[#1a1a1a]"></div>
+
+        {/* Randomized scattered blocks */}
+
+        {/* Far Left */}
+        <div className="absolute bottom-[32px] left-0 flex items-end">
+          <div className="w-[64px] h-[32px] bg-[#1a1a1a]"></div>
+          <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+          <div className="w-[32px] h-[32px] bg-[#000080]"></div>
+          <div className="w-[32px] h-[32px] bg-[#1a1a1a] ml-[32px]"></div>
+        </div>
+        <div className="absolute bottom-[64px] left-[64px] w-[32px] h-[32px] bg-[#000080]"></div>
+        <div className="absolute bottom-[128px] left-[10%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+
+        {/* Left-Mid Area 1 */}
+        <div className="absolute bottom-[32px] left-[18%] flex flex-col items-start gap-0">
+          <div className="w-[32px] h-[32px] bg-[#000080] ml-[32px]"></div>
+          <div className="flex">
+            <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+            <div className="w-[64px] h-[32px] mt-auto bg-[#1a1a1a]"></div>
           </div>
+        </div>
+        <div className="absolute bottom-[160px] left-[22%] w-[32px] h-[32px] bg-[#000080]"></div>
 
-          {/* Right: Terminal */}
-          <div className="relative">
-            {/* Decorative corner */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-[#00d4ff33]" />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-[#00d4ff33]" />
+        {/* Left-Mid Area 2 */}
+        <div className="absolute bottom-[32px] left-[28%] flex items-end">
+          <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+          <div className="w-[32px] h-[32px] bg-[#000080]"></div>
+        </div>
+        <div className="absolute bottom-[96px] left-[31%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+        <div className="absolute bottom-[192px] left-[35%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
 
-            <div className="glass rounded-sm p-0 overflow-hidden border border-[#00d4ff15]">
-              {/* Terminal header */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-[#00d4ff15] bg-[#020818]">
-                <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-                <span className="font-mono text-xs text-slate-500 ml-2">~/portfolio.sh</span>
-              </div>
+        {/* Center Area (Overlapping Character) */}
+        <div className="absolute bottom-[32px] left-[45%] flex items-end">
+          <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+          <div className="flex flex-col">
+            <div className="w-[32px] h-[32px] bg-[#000080]"></div>
+            <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+          </div>
+        </div>
+        <div className="absolute bottom-[64px] left-[52%] w-[32px] h-[32px] bg-[#000080]"></div>
+        <div className="absolute bottom-[128px] left-[48%] w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+        <div className="absolute bottom-[160px] left-[54%] w-[32px] h-[32px] bg-[#000080]"></div>
 
-              {/* Terminal body */}
-              <div className="p-6 space-y-3 min-h-[280px]">
-                {terminalLines.map((line, i) => (
-                  <div key={i} className="space-y-1">
-                    <div className="font-mono text-sm text-[#00d4ff]">{line.cmd}</div>
-                    <div className="font-mono text-sm text-slate-300 pl-2">{line.out}</div>
-                  </div>
-                ))}
-                <div className="font-mono text-sm text-[#00d4ff] flex items-center gap-1 mt-4">
-                  $<span className="blink ml-1">▋</span>
-                </div>
-              </div>
-            </div>
+        {/* Right-Mid Area */}
+        <div className="absolute bottom-[32px] right-[35%] flex flex-col items-end">
+          <div className="flex">
+            <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+            <div className="w-[32px] h-[32px] bg-[#000080]"></div>
+          </div>
+          <div className="flex">
+            <div className="w-[64px] h-[64px] bg-[#1a1a1a]"></div>
+          </div>
+        </div>
+        <div className="absolute bottom-[130px] right-[40%] w-[64px] h-[32px] bg-[#1a1a1a]"></div>
+        <div className="absolute bottom-[200px] right-[45%] w-[32px] h-[32px] bg-[#000080]"></div>
 
-            {/* Floating tech badges */}
-            <div className="absolute -right-6 top-1/4 flex flex-col gap-2 hidden lg:flex">
-              {['React', 'Next.js', 'TypeScript', 'Node.js'].map((tech, i) => (
-                <div
-                  key={tech}
-                  className="tech-tag animate-float"
-                  style={{ animationDelay: `${i * 0.5}s` }}
-                >
-                  {tech}
-                </div>
-              ))}
+        {/* Right Area 2 */}
+        <div className="absolute bottom-[32px] right-[20%] flex items-end">
+          <div className="w-[32px] h-[32px] bg-[#000080]"></div>
+          <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+          <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+        </div>
+        <div className="absolute bottom-[64px] right-[18%] w-[32px] h-[32px] bg-[#000080]"></div>
+        <div className="absolute bottom-[140px] right-[25%] w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+
+        {/* Far Right */}
+        <div className="absolute bottom-[32px] right-[2%] flex items-end">
+          <div className="flex flex-col items-start gap-0">
+            <div className="w-[32px] h-[32px] bg-[#000080] ml-[64px]"></div>
+            <div className="flex items-end">
+              <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+              <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+              <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
             </div>
           </div>
         </div>
+        <div className="absolute bottom-[128px] right-[8%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="font-mono text-xs text-slate-600 tracking-widest">SCROLL</span>
-          <div className="w-px h-12 bg-gradient-to-b from-[#00d4ff44] to-transparent animate-pulse" />
-        </div>
       </div>
     </section>
-  )
+  );
 }
