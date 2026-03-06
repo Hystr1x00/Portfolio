@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SOUNDS = [
@@ -9,6 +10,7 @@ const SOUNDS = [
 ];
 
 export default function SoundControl() {
+    const pathname = usePathname();
     const [isPlaying, setIsPlaying] = useState(true);
     const [volume, setVolume] = useState(0.5);
     const [isMuted, setIsMuted] = useState(false);
@@ -48,6 +50,10 @@ export default function SoundControl() {
     const nextTrack = () => {
         setCurrentTrackIndex((prev) => (prev + 1) % SOUNDS.length);
     };
+
+    if (pathname === '/projects') {
+        return null;
+    }
 
     return (
         <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3 font-mono">

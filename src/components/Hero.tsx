@@ -274,12 +274,19 @@ export default function Hero() {
         style={{ opacity, y: yTranslate }}
         className="relative z-10 flex flex-col items-center w-full min-h-screen flex-1 pt-8 sm:pt-10 sm:px:10 pb-5"
       >
+        <style jsx>{`
+          .portfolio-title {
+            text-shadow: 4px 4px 0 #fff, -4px -4px 0 #fff, 4px -4px 0 #fff, -4px 4px 0 #fff, 0 4px 0 #fff, 4px 0 0 #fff, 0 -4px 0 #fff, -4px 0 0 #fff, 6px 6px 0 #fff, -6px 0 0 #fff, 0 6px 0 #fff, 0 -6px 0 #fff, -6px -6px 0 #fff, 6px -6px 0 #fff, -6px 6px 0 #fff;
+          }
+          @media (min-width: 640px) {
+            .portfolio-title {
+              text-shadow: 8px 8px 0 #fff, -8px -8px 0 #fff, 8px -8px 0 #fff, -8px 8px 0 #fff, 0 8px 0 #fff, 8px 0 0 #fff, 0 -8px 0 #fff, -8px 0 0 #fff, 12px 12px 0 #fff, -12px 0 0 #fff, 0 12px 0 #fff, 0 -12px 0 #fff, -12px -12px 0 #fff, 12px -12px 0 #fff, -12px 12px 0 #fff;
+            }
+          }
+        `}</style>
         {/* Giant Title */}
         <motion.h1
-          className="text-black text-[12vw] sm:text-[12vw] md:text-[11.5vw] lg:text-[12vw] tracking-tighter uppercase text-center leading-[0.8] w-full m-0 p-0"
-          style={{
-            textShadow: '8px 8px 0 #fff, -8px -8px 0 #fff, 8px -8px 0 #fff, -8px 8px 0 #fff, 0 8px 0 #fff, 8px 0 0 #fff, 0 -8px 0 #fff, -8px 0 0 #fff, 12px 12px 0 #fff, -12px 0 0 #fff, 0 12px 0 #fff, 0 -12px 0 #fff, -12px -12px 0 #fff, 12px -12px 0 #fff, -12px 12px 0 #fff'
-          }}
+          className="portfolio-title text-black text-[12vw] sm:text-[12vw] md:text-[11.5vw] lg:text-[12vw] tracking-tighter uppercase text-center leading-[0.8] w-full m-0 p-0"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -290,13 +297,13 @@ export default function Hero() {
 
         {/* Info Box / Highlighted Text */}
         <motion.div
-          className="-mt-16 sm:-mt-24 md:-mt-32 lg:-mt-36 max-w-2xl text-center mx-4 z-20 flex flex-col items-center gap-0"
+          className="mt-4 sm:-mt-24 md:-mt-32 lg:-mt-36 max-w-[80vw] sm:max-w-2xl text-center mx-4 z-20 flex flex-col items-center gap-1 sm:gap-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
         >
           <motion.span
-            className="bg-[#fcee6d] text-black text-[10px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block"
+            className="bg-[#fcee6d] text-black text-[9px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
@@ -304,7 +311,7 @@ export default function Hero() {
             Pixelated mind!
           </motion.span>
           <motion.span
-            className="bg-[#fcee6d] text-black text-[10px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block"
+            className="bg-[#fcee6d] text-black text-[9px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
@@ -312,7 +319,7 @@ export default function Hero() {
             Creating Code, System, and Ideas.
           </motion.span>
           <motion.span
-            className="bg-[#fcee6d] text-black text-[10px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block"
+            className="bg-[#fcee6d] text-black text-[9px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
@@ -349,7 +356,7 @@ export default function Hero() {
 
           {/* Dialogue Box */}
           <motion.div
-            className="absolute bottom-12 sm:bottom-16 lg:bottom-50 z-20 w-[100%] md:w-[600px] lg:w-[800px] flex flex-col items-start"
+            className="absolute bottom-12 sm:bottom-16 lg:bottom-50 z-[60] w-[85%] sm:w-[90%] md:w-[600px] lg:w-[800px] flex flex-col items-start pr-12 sm:pr-0"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}

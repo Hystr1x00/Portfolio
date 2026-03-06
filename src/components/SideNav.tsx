@@ -117,12 +117,12 @@ export default function SideNav() {
 
     return (
         <nav
-            className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-[9999] flex flex-col items-center gap-1"
+            className="fixed right-2 sm:right-6 top-1/2 -translate-y-1/2 z-[9999] flex flex-col items-center gap-1"
             aria-label="Section Navigation"
         >
             {/* Pixel border frame with dark background */}
             <div
-                className="relative p-1.5"
+                className="relative p-1 sm:p-1.5"
                 style={{
                     backgroundColor: "rgba(0,0,0,0.75)",
                     border: "2px solid rgba(255,255,255,0.25)",
@@ -132,7 +132,7 @@ export default function SideNav() {
                 }}
             >
                 {/* Inner content */}
-                <div className="flex flex-col items-center gap-0.5 py-2 px-1.5">
+                <div className="flex flex-col items-center gap-0.5 py-1.5 px-1 sm:py-2 sm:px-1.5">
                     {navItems.map((item, index) => {
                         const isActive = activeSection === item.id;
                         const isHovered = hoveredItem === item.id;
@@ -154,7 +154,7 @@ export default function SideNav() {
                                         onClick={() => scrollToSection(item.id)}
                                         onMouseEnter={() => setHoveredItem(item.id)}
                                         onMouseLeave={() => setHoveredItem(null)}
-                                        className="relative w-10 h-10 flex items-center justify-center cursor-pointer transition-colors duration-150"
+                                        className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center cursor-pointer transition-colors duration-150"
                                         style={{
                                             color: isActive ? "#fff" : "rgba(255,255,255,0.7)",
                                             backgroundColor: isActive

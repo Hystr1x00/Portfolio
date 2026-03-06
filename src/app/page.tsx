@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Introduction from "@/components/Introduction";
 import TechStack from "@/components/TechStack";
 import Experience from "@/components/Experience";
+import RetroTV from "@/components/RetroTV";
 import Footer from "@/components/Footer";
 import SideNav from "@/components/SideNav";
 import SplashScreen from "@/components/SplashScreen";
@@ -15,6 +16,7 @@ export default function Home() {
         <Introduction />
         <TechStack />
         <Experience />
+        <RetroTV />
         <Footer />
       </div>
     </SplashScreen>
