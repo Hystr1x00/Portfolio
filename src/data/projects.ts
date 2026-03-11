@@ -11,6 +11,7 @@ export interface Project {
     link: string;
     github: string;
     images: string[];
+    extra?: string;
 }
 
 export const projects: Project[] = [

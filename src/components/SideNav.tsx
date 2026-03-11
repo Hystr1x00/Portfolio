@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 interface NavItem {
     id: string;
@@ -73,16 +73,51 @@ const PixelStackIcon = () => (
     </svg>
 );
 
+const PixelMonitorIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 16 16" className="pixelated" style={{ imageRendering: "pixelated" }}>
+        {/* Screen frame */}
+        <rect x="2" y="2" width="12" height="10" fill="currentColor" />
+        <rect x="3" y="3" width="10" height="8" fill="rgba(0,0,0,0.4)" />
+        {/* Stand */}
+        <rect x="7" y="12" width="2" height="2" fill="currentColor" />
+        <rect x="4" y="14" width="8" height="1" fill="currentColor" opacity="0.8" />
+    </svg>
+);
+
+const PixelGuildIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 16 16" className="pixelated" style={{ imageRendering: "pixelated" }}>
+        <rect x="2" y="2" width="12" height="12" fill="currentColor" opacity="0.2" />
+        <rect x="4" y="4" width="8" height="2" fill="currentColor" />
+        <rect x="4" y="7" width="8" height="2" fill="currentColor" />
+        <rect x="4" y="10" width="5" height="2" fill="currentColor" />
+        <rect x="11" y="10" width="2" height="2" fill="currentColor" opacity="0.8" />
+    </svg>
+);
+
 const navItems: NavItem[] = [
     { id: "hero", label: "Home", icon: <PixelHomeIcon /> },
     { id: "introduction", label: "About", icon: <PixelUserIcon /> },
     { id: "techstack", label: "Stack", icon: <PixelStackIcon /> },
     { id: "experience", label: "Work", icon: <PixelBriefcaseIcon /> },
+    { id: "projects", label: "Projects", icon: <PixelMonitorIcon /> },
+    { id: "organizations", label: "Guild", icon: <PixelGuildIcon /> },
 ];
 
 export default function SideNav() {
     const [activeSection, setActiveSection] = useState("hero");
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+    const [isHidden, setIsHidden] = useState(false);
+
+    const { scrollY } = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious();
+        if (latest > previous! && latest > 150) {
+            setIsHidden(true); // Scrolling down
+        } else {
+            setIsHidden(false); // Scrolling up
+        }
+    });
 
     // Track which section is currently in view
     useEffect(() => {
@@ -116,7 +151,10 @@ export default function SideNav() {
     };
 
     return (
-        <nav
+        <motion.nav
+            initial={{ x: 0 }}
+            animate={{ x: isHidden ? "150%" : "0%" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="fixed right-2 sm:right-6 top-1/2 -translate-y-1/2 z-[9999] flex flex-col items-center gap-1"
             aria-label="Section Navigation"
         >
@@ -232,6 +270,6 @@ export default function SideNav() {
                     })}
                 </div>
             </div>
-        </nav>
+        </motion.nav>
     );
 }

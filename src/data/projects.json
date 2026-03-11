@@ -1,0 +1,292 @@
+[
+    {
+        "id": 1,
+        "title": "TumbuhKita",
+        "type": "HealthTech",
+        "desc": "TumbuhKita is a React + Vite-based web application for monitoring toddler growth and development, integrated health posts (Posyandu), health workers, villages, and discussion forums. This project features dummy data ready to migrate to a live API, as well as comprehensive admin and user dashboard features.",
+        "tech": [
+            "React",
+            "JavaScript",
+            "Tailwind CSS"
+        ],
+        "status": "Prototype",
+        "featured": true,
+        "metrics": [
+            [
+                "Local",
+                "Environment"
+            ],
+            [
+                "Private",
+                "Access"
+            ],
+            [
+                "Demo",
+                "Data"
+            ]
+        ],
+        "color": "#1e40af",
+        "link": "https://hystr1x00.github.io/TumbuhKita/",
+        "github": "https://github.com/Hystr1x00/TumbuhKita",
+        "images": [
+            "/project/tumbuhkita1.png"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Fitrent",
+        "type": "Booking System",
+        "desc": "FitRent is a web-based information system for managing sports field rentals and returns with multi-role user management (Superadmin, Field Admin, and User).",
+        "tech": [
+            "PHP",
+            "Laravel",
+            "MySQL",
+            "Tailwind CSS"
+        ],
+        "status": "Prototype",
+        "featured": true,
+        "metrics": [
+            [
+                "Local",
+                "Environment"
+            ],
+            [
+                "Private",
+                "Access"
+            ],
+            [
+                "Demo",
+                "Data"
+            ]
+        ],
+        "color": "#0f766e",
+        "link": "#",
+        "github": "https://github.com/Hystr1x00/FitRent",
+        "images": [
+            "/project/fitrent1.png",
+            "/project/fitrent2.png"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Plantify",
+        "type": "E-COMMERCE & Monitoring System",
+        "desc": "Plantify is a web-based information system for managing plant rentals and returns with multi-role user management (Superadmin, Field Admin, and User).",
+        "tech": [
+            "PHP",
+            "Laravel",
+            "MySQL",
+            "Tailwind CSS"
+        ],
+        "status": "Prototype",
+        "featured": false,
+        "metrics": [
+            [
+                "Local",
+                "Environment"
+            ],
+            [
+                "Private",
+                "Access"
+            ],
+            [
+                "Demo",
+                "Data"
+            ]
+        ],
+        "color": "#5b21b6",
+        "link": "#",
+        "github": "https://github.com/PLANTIFY408/TubesPPL/tree/master",
+        "images": [
+            "/project/plantify1.png",
+            "/project/plantify2.png",
+            "/project/plantify3.png",
+            "/project/plantify4.png"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "GMC Website",
+        "type": "Booking System",
+        "desc": "GMC is a web-based information system for managing gym equipment rentals and returns with multi-role user management (Superadmin, Field Admin, and User).",
+        "tech": [
+            "PHP",
+            "Laravel",
+            "MySQL",
+            "Tailwind CSS"
+        ],
+        "status": "Live",
+        "featured": false,
+        "metrics": [
+            [
+                "Public",
+                "Access"
+            ],
+            [
+                "Active",
+                "Users"
+            ],
+            [
+                "Live",
+                "Status"
+            ]
+        ],
+        "color": "#991b1b",
+        "link": "https://galaxymedicalcenter.com/",
+        "github": "#",
+        "images": [
+            "/project/gmc1.png",
+            "/project/gmc2.png",
+            "/project/gmc3.png"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Hawa",
+        "type": "Monitoring System",
+        "desc": "Hawa is a web-based information system for monitoring air quality with multi-role user management (Superadmin, Field Admin, and User).",
+        "tech": [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Arduino"
+        ],
+        "status": "Live",
+        "featured": true,
+        "metrics": [
+            [
+                "Public",
+                "Access"
+            ],
+            [
+                "Active",
+                "Users"
+            ],
+            [
+                "Live",
+                "Status"
+            ]
+        ],
+        "color": "#b45309",
+        "link": "https://hawa.blog/",
+        "github": "#",
+        "images": [
+            "/project/hawa1.png",
+            "/project/hawa2.png",
+            "/project/hawa3.png",
+            "/project/hawa4.png"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Lab Management System",
+        "type": "Information System",
+        "desc": "Lab Management System is a web-based information system for managing lab equipment and bookings with multi-role user management (Superadmin, Field Admin, and User).",
+        "tech": [
+            "React",
+            "Node.js",
+            "PostgreSQL",
+            "Tailwind CSS"
+        ],
+        "status": "Prototype",
+        "featured": false,
+        "metrics": [
+            [
+                "Local",
+                "Environment"
+            ],
+            [
+                "Private",
+                "Access"
+            ],
+            [
+                "Demo",
+                "Data"
+            ]
+        ],
+        "color": "#1e3a8a",
+        "link": "https://hystr1x00.github.io/capstone-fri/",
+        "github": "https://github.com/Hystr1x00/capstone-fri",
+        "images": [
+            "/project/lms1.png",
+            "/project/lms2.png",
+            "/project/lms3.png"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Growell",
+        "type": "HealthTech",
+        "desc": "Growell is a web-based information system for managing kids health with multi-role user management (Superadmin, Field Admin, and User).",
+        "tech": [
+            "React",
+            "JavaScript",
+            "Tailwind CSS",
+            "Node.js",
+            "MySQL",
+            "Python"
+        ],
+        "status": "Live",
+        "featured": false,
+        "metrics": [
+            [
+                "Public",
+                "Access"
+            ],
+            [
+                "Active",
+                "Users"
+            ],
+            [
+                "Live",
+                "Status"
+            ]
+        ],
+        "color": "#166534",
+        "link": "https://growell.my.id/",
+        "github": "#",
+        "images": [
+            "/project/growell1.png",
+            "/project/growell2.png",
+            "/project/growell3.png",
+            "/project/growell4.png"
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Portfolio Website",
+        "type": "Portfolio",
+        "desc": "Portfolio website for showcasing projects and skills.",
+        "tech": [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS"
+        ],
+        "status": "Live",
+        "featured": false,
+        "metrics": [
+            [
+                "Public",
+                "Access"
+            ],
+            [
+                "Active",
+                "Users"
+            ],
+            [
+                "Live",
+                "Status"
+            ]
+        ],
+        "color": "#374151",
+        "link": "https://www.ghaniarchives.space/",
+        "github": "#",
+        "images": [
+            "/project/portfolio1.png",
+            "/project/portfolio2.png",
+            "/project/portfolio3.png",
+            "/project/portfolio4.png",
+            "/project/portfolio5.png"
+        ]
+    }
+]

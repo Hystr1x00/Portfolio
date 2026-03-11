@@ -286,7 +286,7 @@ export default function Hero() {
         `}</style>
         {/* Giant Title */}
         <motion.h1
-          className="portfolio-title text-black text-[12vw] sm:text-[12vw] md:text-[11.5vw] lg:text-[12vw] tracking-tighter uppercase text-center leading-[0.8] w-full m-0 p-0"
+          className="portfolio-title text-black text-[12vw] sm:text-[12vw] md:text-[11.5vw] lg:text-[12vw] tracking-tighter uppercase text-center leading-[0.8] w-full m-0 p-0 scale-y-[4] origin-top sm:scale-y-160"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -297,13 +297,13 @@ export default function Hero() {
 
         {/* Info Box / Highlighted Text */}
         <motion.div
-          className="mt-4 sm:-mt-24 md:-mt-32 lg:-mt-36 max-w-[80vw] sm:max-w-2xl text-center mx-4 z-20 flex flex-col items-center gap-1 sm:gap-0"
+          className="-mt-20sm:-mt-24 md:-mt-32 lg:-mt-36 max-w-[80vw] sm:max-w-2xl text-center mx-4 z-20 flex flex-col items-center gap-0 sm:gap-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
         >
           <motion.span
-            className="bg-[#fcee6d] text-black text-[9px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words"
+            className="bg-[#fcee6d] text-black text-[8px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
@@ -311,7 +311,7 @@ export default function Hero() {
             Pixelated mind!
           </motion.span>
           <motion.span
-            className="bg-[#fcee6d] text-black text-[9px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words"
+            className="bg-[#fcee6d] text-black text-[7px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words -mt-[1.5px] sm:mt-0"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
@@ -319,7 +319,7 @@ export default function Hero() {
             Creating Code, System, and Ideas.
           </motion.span>
           <motion.span
-            className="bg-[#fcee6d] text-black text-[9px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words"
+            className="bg-[#fcee6d] text-black text-[7px] sm:text-[12px] md:text-sm px-2 py-1 uppercase inline-block max-w-[85vw] whitespace-normal leading-tight break-words -mt-[1.5px] sm:mt-0"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
@@ -334,7 +334,7 @@ export default function Hero() {
           {/* Character */}
           <motion.div
             style={{ y: charY }}
-            className="relative w-full max-w-[400px] sm:max-w-[700px] lg:max-w-[800px] h-[55vh] sm:h-[65vh] lg:h-[75vh] hover:scale-105 transition-transform duration-200 cursor-pointer"
+            className="relative w-full max-w-[400px] sm:max-w-[700px] lg:max-w-[800px] h-[55vh] sm:h-[65vh] lg:h-[75vh] hover:scale-105 transition-transform duration-200 cursor-pointer -mt-20 sm:mt-0"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -387,79 +387,68 @@ export default function Hero() {
         {/* Randomized scattered blocks */}
 
         {/* Far Left */}
-        <div className="absolute bottom-[32px] left-0 flex items-end">
+        <div className="absolute bottom-[31px] left-0 hidden sm:flex items-end">
           <div className="w-[64px] h-[32px] bg-[#1a1a1a]"></div>
-          <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
-          <div className="w-[32px] h-[32px] bg-[#000080]"></div>
-          <div className="w-[32px] h-[32px] bg-[#1a1a1a] ml-[32px]"></div>
+          <div className="w-[32px] h-[64px] bg-[#1a1a1a] -ml-[1px]"></div>
+          <div className="w-[32px] h-[32px] bg-[#000080] -ml-[1px]"></div>
+          <div className="w-[32px] h-[32px] bg-[#1a1a1a] ml-[31px]"></div>
         </div>
-        <div className="absolute bottom-[64px] left-[64px] w-[32px] h-[32px] bg-[#000080]"></div>
-        <div className="absolute bottom-[128px] left-[10%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+        <div className="absolute bottom-[64px] left-[64px] w-[32px] h-[32px] bg-[#000080] hidden sm:block"></div>
+        <div className="absolute bottom-[128px] left-[10%] w-[32px] h-[32px] bg-[#1a1a1a] hidden sm:block"></div>
 
         {/* Left-Mid Area 1 */}
-        <div className="absolute bottom-[32px] left-[18%] flex flex-col items-start gap-0">
-          <div className="w-[32px] h-[32px] bg-[#000080] ml-[32px]"></div>
-          <div className="flex">
+        <div className="absolute bottom-[31px] left-[18%] hidden sm:flex flex-col items-start gap-0">
+          <div className="w-[32px] h-[32px] bg-[#000080] ml-[31px]"></div>
+          <div className="flex -mt-[1px]">
             <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
-            <div className="w-[64px] h-[32px] mt-auto bg-[#1a1a1a]"></div>
+            <div className="w-[64px] h-[32px] mt-auto bg-[#1a1a1a] -ml-[1px]"></div>
           </div>
         </div>
-        <div className="absolute bottom-[160px] left-[22%] w-[32px] h-[32px] bg-[#000080]"></div>
+        <div className="absolute bottom-[160px] left-[22%] w-[32px] h-[32px] bg-[#000080] hidden sm:block"></div>
 
         {/* Left-Mid Area 2 */}
-        <div className="absolute bottom-[32px] left-[28%] flex items-end">
+        <div className="absolute bottom-[31px] left-[28%] hidden sm:flex items-end">
           <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
-          <div className="w-[32px] h-[32px] bg-[#000080]"></div>
+          <div className="w-[32px] h-[32px] bg-[#000080] -ml-[1px]"></div>
         </div>
-        <div className="absolute bottom-[96px] left-[31%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
-        <div className="absolute bottom-[192px] left-[35%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+        <div className="absolute bottom-[96px] left-[31%] w-[32px] h-[32px] bg-[#1a1a1a] hidden sm:block"></div>
+        <div className="absolute bottom-[192px] left-[35%] w-[32px] h-[32px] bg-[#1a1a1a] hidden sm:block"></div>
 
-        {/* Center Area (Overlapping Character) */}
-        <div className="absolute bottom-[32px] left-[45%] flex items-end">
-          <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
-          <div className="flex flex-col">
-            <div className="w-[32px] h-[32px] bg-[#000080]"></div>
-            <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
-          </div>
-        </div>
-        <div className="absolute bottom-[64px] left-[52%] w-[32px] h-[32px] bg-[#000080]"></div>
-        <div className="absolute bottom-[128px] left-[48%] w-[32px] h-[64px] bg-[#1a1a1a]"></div>
-        <div className="absolute bottom-[160px] left-[54%] w-[32px] h-[32px] bg-[#000080]"></div>
 
         {/* Right-Mid Area */}
-        <div className="absolute bottom-[32px] right-[35%] flex flex-col items-end">
+        <div className="absolute bottom-[31px] right-[35%] hidden sm:flex flex-col items-end">
           <div className="flex">
             <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
-            <div className="w-[32px] h-[32px] bg-[#000080]"></div>
+            <div className="w-[32px] h-[32px] bg-[#000080] -ml-[1px]"></div>
           </div>
-          <div className="flex">
+          <div className="flex -mt-[1px]">
             <div className="w-[64px] h-[64px] bg-[#1a1a1a]"></div>
           </div>
         </div>
-        <div className="absolute bottom-[130px] right-[40%] w-[64px] h-[32px] bg-[#1a1a1a]"></div>
-        <div className="absolute bottom-[200px] right-[45%] w-[32px] h-[32px] bg-[#000080]"></div>
+        <div className="absolute bottom-[130px] right-[40%] w-[64px] h-[32px] bg-[#1a1a1a] hidden sm:block"></div>
+        <div className="absolute bottom-[200px] right-[45%] w-[32px] h-[32px] bg-[#000080] hidden sm:block"></div>
 
         {/* Right Area 2 */}
-        <div className="absolute bottom-[32px] right-[20%] flex items-end">
+        <div className="absolute bottom-[31px] right-[20%] hidden sm:flex items-end">
           <div className="w-[32px] h-[32px] bg-[#000080]"></div>
-          <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
-          <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+          <div className="w-[32px] h-[64px] bg-[#1a1a1a] -ml-[1px]"></div>
+          <div className="w-[32px] h-[32px] bg-[#1a1a1a] -ml-[1px]"></div>
         </div>
-        <div className="absolute bottom-[64px] right-[18%] w-[32px] h-[32px] bg-[#000080]"></div>
-        <div className="absolute bottom-[140px] right-[25%] w-[32px] h-[64px] bg-[#1a1a1a]"></div>
+        <div className="absolute bottom-[64px] right-[18%] w-[32px] h-[32px] bg-[#000080] hidden sm:block"></div>
+        <div className="absolute bottom-[140px] right-[25%] w-[32px] h-[64px] bg-[#1a1a1a] hidden sm:block"></div>
 
         {/* Far Right */}
-        <div className="absolute bottom-[32px] right-[2%] flex items-end">
+        <div className="absolute bottom-[31px] right-[2%] hidden sm:flex items-end">
           <div className="flex flex-col items-start gap-0">
-            <div className="w-[32px] h-[32px] bg-[#000080] ml-[64px]"></div>
-            <div className="flex items-end">
+            <div className="w-[32px] h-[32px] bg-[#000080] ml-[63px]"></div>
+            <div className="flex items-end -mt-[1px]">
               <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
-              <div className="w-[32px] h-[64px] bg-[#1a1a1a]"></div>
-              <div className="w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+              <div className="w-[32px] h-[64px] bg-[#1a1a1a] -ml-[1px]"></div>
+              <div className="w-[32px] h-[32px] bg-[#1a1a1a] -ml-[1px]"></div>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-[128px] right-[8%] w-[32px] h-[32px] bg-[#1a1a1a]"></div>
+        <div className="absolute bottom-[128px] right-[8%] w-[32px] h-[32px] bg-[#1a1a1a] hidden sm:block"></div>
 
       </div>
     </section>

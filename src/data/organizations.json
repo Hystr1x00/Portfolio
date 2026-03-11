@@ -1,0 +1,90 @@
+[
+    {
+        "org": "PDD PKKMB Telkom University",
+        "role": "Staff PDD",
+        "period": "Jun-Sep 2024",
+        "desc": "Captured and documented various activities and events, creating engaging visual content for publication.",
+        "color": "#ffd700",
+        "theme": "GasGiant",
+        "pos": {
+            "x": "25%",
+            "top": "200px"
+        },
+        "glow": "rgba(255,215,0,0.4)",
+        "images": [
+            "/organizations/pdd1.jpg",
+            "/organizations/pdd2.JPG"
+        ]
+    },
+    {
+        "org": "Alpro Practicum Assistant",
+        "role": "Staff Media",
+        "period": "Aug-Des 2024",
+        "desc": "Teaching assistant for Alpro Practicum, helping students with assignments and projects also making design for media social.",
+        "color": "#ff45c0",
+        "theme": "Ringed",
+        "pos": {
+            "x": "75%",
+            "top": "450px"
+        },
+        "glow": "rgba(255,69,192,0.4)",
+        "images": [
+            "/organizations/alpro1.JPG",
+            "/organizations/alpro2.JPG"
+        ]
+    },
+    {
+        "org": "OOP Practicum Assistant",
+        "role": "Media Coordinator",
+        "period": "Aug-Des 2024",
+        "desc": "Teaching assistant for OOP Practicum, helping students with assignments and projects also making design for media social.",
+        "color": "#ff5722",
+        "theme": "GasGiant",
+        "pos": {
+            "x": "25%",
+            "top": "700px"
+        },
+        "glow": "rgba(255,87,34,0.4)",
+        "images": [
+            "/organizations/oop1.JPG",
+            "/organizations/oop2.JPG"
+        ]
+    },
+    {
+        "org": "GDGOC Telkom University",
+        "role": "Staff Media Creative",
+        "period": "2024 - 2025",
+        "desc": "Managed GDGOC TELYU design for media social and asset.",
+        "color": "#4285F4",
+        "theme": "Ringed",
+        "pos": {
+            "x": "75%",
+            "top": "950px"
+        },
+        "glow": "rgba(66,133,244,0.4)",
+        "images": [
+            "/organizations/gdgoc1.jpeg",
+            "/organizations/gdgoc2.jpeg"
+        ]
+    },
+    {
+        "org": "EISD Laboratory",
+        "role": "Content Coordinator",
+        "period": "2024 - 2025",
+        "desc": "Leading team to make a special feeds design for EISD Laboratory's media",
+        "color": "#00cfff",
+        "theme": "Ice",
+        "pos": {
+            "x": "30%",
+            "top": "1200px"
+        },
+        "glow": "rgba(0,207,255,0.4)",
+        "images": [
+            "/organizations/eisd1.png",
+            "/organizations/eisd2.JPG",
+            "/organizations/eisd3.JPG",
+            "/organizations/eisd4.jpeg",
+            "/organizations/eisd5.JPG"
+        ]
+    }
+]

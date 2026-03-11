@@ -1,7 +1,10 @@
 'use client'
 import { useState, useEffect, useRef } from 'react';
-import { projects, Project } from '@/data/projects';
+import { Project } from '@/data/projects';
+import projectsData from '@/data/projects.json';
 import XpWindow from './XpWindow';
+
+const projects: Project[] = projectsData as Project[];
 
 // Adding Lucide icons for the start menu
 import { Monitor, Play, Pause, SkipBack, SkipForward, Volume2 } from 'lucide-react';
@@ -21,7 +24,7 @@ export default function XpDesktop() {
             if (isPlaying) {
                 audioRef.current.pause();
             } else {
-                audioRef.current.volume = 0.5; // Set a default volume
+                audioRef.current.volume = 0.1; // Set a default volume
                 audioRef.current.play().catch(e => console.error("Audio play failed:", e));
             }
             setIsPlaying(!isPlaying);
@@ -48,7 +51,7 @@ export default function XpDesktop() {
                 }}
             />
             {/* Desktop Icons Grid */}
-            <div className="absolute inset-0 p-4 pb-16 flex flex-col flex-wrap gap-6 items-start content-start overflow-y-auto">
+            <div className="absolute inset-0 p-4 pb-16 grid grid-cols-2 grid-rows-[repeat(auto-fill,100px)] gap-x-6 gap-y-4 items-start justify-start w-fit">
                 {projects.map((project) => (
                     <div
                         key={project.id}
@@ -92,14 +95,14 @@ export default function XpDesktop() {
             </div>
 
             {/* Widgets Section (Right side) */}
-            <div className="absolute right-6 top-6 flex flex-col gap-6 z-10 w-64 pointer-events-auto">
+            <div className="absolute right-2 top-2 lg:right-6 lg:top-6 flex flex-col gap-2 lg:gap-6 z-10 w-40 lg:w-64 pointer-events-auto">
                 {/* Cute Sticky Note */}
-                <div className="bg-[#feff9c] text-black p-4 shadow-lg w-full -rotate-2 transform hover:rotate-0 transition-transform cursor-pointer border-t-4 border-[#ffeb3b]">
-                    <div className="flex justify-between items-start mb-2">
-                        <div className="w-12 h-4 bg-red-400/30 -mt-6 mx-auto absolute left-1/2 -translate-x-1/2 rounded shadow-sm"></div>
-                        <span className="font-pixel text-xs text-gray-500">Note.txt</span>
+                <div className="bg-[#feff9c] text-black p-2 lg:p-4 shadow-lg w-full -rotate-2 transform hover:rotate-0 transition-transform cursor-pointer border-t-2 lg:border-t-4 border-[#ffeb3b]">
+                    <div className="flex justify-between items-start mb-1 lg:mb-2">
+                        <div className="w-8 h-3 lg:w-12 lg:h-4 bg-red-400/30 -mt-3 lg:-mt-6 mx-auto absolute left-1/2 -translate-x-1/2 rounded shadow-sm"></div>
+                        <span className="font-pixel text-[8px] lg:text-xs text-gray-500">Note.txt</span>
                     </div>
-                    <p className="font-sans text-sm leading-relaxed whitespace-pre-line tracking-wide">
+                    <p className="font-sans text-[10px] lg:text-sm leading-snug lg:leading-relaxed whitespace-pre-line tracking-wide">
                         Hi there! (づ｡◕‿‿◕｡)づ
 
                         Welcome to my portfolio!
@@ -110,37 +113,37 @@ export default function XpDesktop() {
                 </div>
 
                 {/* Mini Retro Music Player */}
-                <div className="bg-gradient-to-b from-gray-200 to-gray-300 rounded shadow-lg border border-gray-400 p-3 w-full backdrop-blur-sm bg-opacity-90">
-                    <div className="flex justify-between items-center mb-2 pb-2 border-b border-gray-400/50">
-                        <span className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">WinAmp Mini</span>
-                        <div className="flex gap-1">
-                            <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                            <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-                            <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                <div className="bg-gradient-to-b from-gray-200 to-gray-300 rounded shadow-lg border border-gray-400 p-1.5 lg:p-3 w-full backdrop-blur-sm bg-opacity-90">
+                    <div className="flex justify-between items-center mb-1 lg:mb-2 pb-1 lg:pb-2 border-b border-gray-400/50">
+                        <span className="text-[6px] lg:text-[10px] font-bold text-gray-600 uppercase tracking-wider">WinAmp Mini</span>
+                        <div className="flex gap-0.5 lg:gap-1">
+                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-red-400"></div>
+                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-yellow-400"></div>
+                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-green-400"></div>
                         </div>
                     </div>
 
-                    <div className="bg-black/90 rounded p-2 mb-3 shadow-inner">
-                        <div className="text-[#00ff00] text-xs font-pixel truncate animate-pulse">
+                    <div className="bg-black/90 rounded p-1 lg:p-2 mb-1.5 lg:mb-3 shadow-inner">
+                        <div className="text-[#00ff00] text-[8px] lg:text-xs font-pixel truncate animate-pulse">
                             Now Playing: Lofi Beats to Code To...
                         </div>
-                        <div className="mt-2 h-1 w-full bg-gray-700 rounded-full overflow-hidden">
+                        <div className="mt-1 lg:mt-2 h-0.5 lg:h-1 w-full bg-gray-700 rounded-full overflow-hidden">
                             <div className="h-full bg-[#00ff00] w-1/3"></div>
                         </div>
                     </div>
 
                     <div className="flex justify-between items-center text-gray-700">
-                        <div className="flex gap-3">
-                            <button className="hover:text-black hover:scale-110 transition-all active:scale-95"><SkipBack size={16} /></button>
+                        <div className="flex gap-1 lg:gap-3">
+                            <button className="hover:text-black hover:scale-110 transition-all active:scale-95"><SkipBack size={12} className="lg:w-4 lg:h-4" /></button>
                             <button
                                 onClick={togglePlay}
                                 className="hover:text-black hover:scale-110 transition-all active:scale-95"
                             >
-                                {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
+                                {isPlaying ? <Pause size={14} className="lg:w-[18px] lg:h-[18px]" fill="currentColor" /> : <Play size={14} className="lg:w-[18px] lg:h-[18px]" fill="currentColor" />}
                             </button>
-                            <button className="hover:text-black hover:scale-110 transition-all active:scale-95"><SkipForward size={16} /></button>
+                            <button className="hover:text-black hover:scale-110 transition-all active:scale-95"><SkipForward size={12} className="lg:w-4 lg:h-4" /></button>
                         </div>
-                        <Volume2 size={16} className="text-gray-500 cursor-pointer hover:text-black" />
+                        <Volume2 size={12} className="lg:w-4 lg:h-4 text-gray-500 cursor-pointer hover:text-black" />
                     </div>
 
                     {/* Hidden Audio Element - Using a royalty free lofi track as placeholder */}

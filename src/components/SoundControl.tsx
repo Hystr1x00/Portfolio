@@ -12,7 +12,7 @@ const SOUNDS = [
 export default function SoundControl() {
     const pathname = usePathname();
     const [isPlaying, setIsPlaying] = useState(true);
-    const [volume, setVolume] = useState(0.5);
+    const [volume, setVolume] = useState(0.1);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
     const [showControls, setShowControls] = useState(false);

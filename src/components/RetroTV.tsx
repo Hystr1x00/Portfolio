@@ -3,9 +3,24 @@ import Link from 'next/link';
 
 export default function RetroTV() {
     return (
-        <section className="py-24 relative flex items-center justify-center bg-[#111] overflow-hidden">
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[radial-gradient(circle,rgba(0,180,255,0.05)_0%,transparent_70%)] pointer-events-none" />
+        <section id="projects" className="py-24 relative flex items-center justify-center bg-gradient-to-b from-[#111] via-[#0d0121] to-[#04010a] overflow-hidden transition-colors duration-1000">
+            {/* 1. Dither Pattern Layer */}
+            <div className="absolute inset-0 opacity-[0.15] pointer-events-none z-0"
+                style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h2v2H0V0zm2 2h2v2H2V2z' fill='%236b21a8' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+                    backgroundSize: '4px 4px'
+                }}
+            />
+
+            {/* 2. Noise/Grain Texture */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0 mix-blend-overlay animate-grain"
+                style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+                }}
+            />
+
+            {/* Background Glow - Cyber Midnight Tones */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] bg-[radial-gradient(circle,rgba(112,26,255,0.08)_0%,transparent_70%)] pointer-events-none" />
 
             {/* Main TV Container */}
             <div className="relative group perspective-[1000px] z-10 w-full max-w-[800px] px-4 sm:px-8">
@@ -108,6 +123,21 @@ export default function RetroTV() {
         }
         .animate-pulse-slow {
           animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes grain {
+          0%, 100% { transform: translate(0, 0); }
+          10% { transform: translate(-5%, -10%); }
+          20% { transform: translate(-15%, 5%); }
+          30% { transform: translate(7%, -25%); }
+          40% { transform: translate(-5%, 25%); }
+          50% { transform: translate(-15%, 10%); }
+          60% { transform: translate(15%, 0%); }
+          70% { transform: translate(0%, 15%); }
+          80% { transform: translate(3%, 35%); }
+          90% { transform: translate(-10%, 10%); }
+        }
+        .animate-grain {
+          animation: grain 8s steps(10) infinite;
         }
       `}</style>
         </section>

@@ -202,7 +202,7 @@ export default function XpWindow({ project, onClose }: XpWindowProps) {
                                     </tr>
                                     <tr>
                                         <th className="py-2 px-3 font-semibold text-gray-600 align-top">Extra Info:</th>
-                                        <td className="py-2 px-3 text-gray-700">Project details and 3D assets can be attached here in the future.</td>
+                                        <td className="py-2 px-3 text-gray-700">{project.extra || 'Project details and 3D assets can be attached here in the future.'}</td>
                                     </tr>
                                 </tbody>
                             </table>

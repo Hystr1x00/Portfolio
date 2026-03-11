@@ -157,15 +157,25 @@ function ScrollMoon({ scrollYProgress }: { scrollYProgress: MotionValue<number> 
   const frameStr = frame.toString().padStart(2, "0");
   const src = `/Moon/frame_${frameStr}_delay-0.08s.gif`;
 
+  // Adjust blending for Cyber Midnight transition
+  const moonOpacity = useTransform(scrollYProgress, [0.7, 0.95], [0.8, 1.0]);
+  const glowOpacity = useTransform(scrollYProgress, [0.7, 0.95], [0.2, 0.35]);
+
   return (
-    <div className="absolute bottom-[-250] left-1/2 -translate-x-1/2 translate-y-[200px] sm:translate-y-[350px] w-[800px] h-[800px] sm:w-[1100px] sm:h-[1100px] pointer-events-none z-0 opacity-80 mix-blend-screen flex items-center justify-center">
-      <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl" />
+    <motion.div
+      style={{ opacity: moonOpacity }}
+      className="absolute bottom-[-250] left-1/2 -translate-x-1/2 translate-y-[200px] sm:translate-y-[350px] w-[800px] h-[800px] sm:w-[1100px] sm:h-[1100px] pointer-events-none z-10 mix-blend-screen flex items-center justify-center"
+    >
+      <motion.div
+        style={{ opacity: glowOpacity }}
+        className="absolute inset-0 bg-blue-500 rounded-full blur-3xl"
+      />
       <img
         src={src}
         alt="Animated Moon"
         className="relative z-10 w-full h-full object-contain pixelated"
       />
-    </div>
+    </motion.div>
   );
 }
 
@@ -484,7 +494,7 @@ export default function Experience() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "start start"],
+    offset: ["start end", "end start"],
   });
 
   const titleY = useSpring(
@@ -513,7 +523,7 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="experience"
-      className="relative w-full min-h-[100vh] bg-[#111] flex flex-col items-center py-24 overflow-hidden"
+      className="relative w-full min-h-[100vh] bg-[#111] flex flex-col items-center py-24"
     >
       {/* Twinkle keyframes — same as Introduction */}
       <style jsx global>{`

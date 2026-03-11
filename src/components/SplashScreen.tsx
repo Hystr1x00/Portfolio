@@ -32,8 +32,8 @@ function PixelLoadingBar({ progress }: { progress: number }) {
                             }}
                             transition={{ duration: 0.15, delay: i * 0.02 }}
                             style={{
-                                width: 12,
-                                height: 20,
+                                width: 8,
+                                height: 14,
                                 backgroundColor: i < filledBlocks
                                     ? getBlockColor(i, totalBlocks)
                                     : "rgba(255,255,255,0.03)",
@@ -373,7 +373,7 @@ export default function SplashScreen({ children }: SplashScreenProps) {
                         </div>
 
                         {/* Content */}
-                        <div className="relative z-10 flex flex-col items-center gap-8">
+                        <div className="relative z-10 flex flex-col items-center gap-6">
                             {/* Rocket with float animation */}
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
@@ -382,7 +382,7 @@ export default function SplashScreen({ children }: SplashScreenProps) {
                                     opacity: { duration: 0.6, delay: 0.2 },
                                     y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                                 }}
-                                className="scale-[1.2] sm:scale-[1.5]"
+                                className="scale-90 sm:scale-100"
                             >
                                 <PixelRocket />
                             </motion.div>

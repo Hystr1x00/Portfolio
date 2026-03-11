@@ -1,6 +1,9 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { projects } from '@/data/projects'
+import projectsData from '@/data/projects.json'
+import { Project } from '@/data/projects'
+
+const projects: Project[] = projectsData as Project[];
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null)

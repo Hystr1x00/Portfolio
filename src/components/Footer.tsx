@@ -140,9 +140,9 @@ const socialLinks: SocialLink[] = [
 // ─── Quick nav data ──────────────────────────────────────────────────────────
 
 const quickNav = [
-    { label: "Home", id: "hero" },
     { label: "About", id: "introduction" },
-    { label: "Experience", id: "experience" },
+    { label: "Tech Stack", id: "tech-stack" },
+    { label: "Organizations", id: "organizations" },
 ];
 
 
@@ -246,35 +246,18 @@ export default function Footer() {
 
                     {/* ── Brand Column ───────────────────────────────────────── */}
                     <div className="flex flex-col items-center md:items-start gap-5 max-w-xs">
-                        {/* Pixel Rocket Logo */}
+                        {/* Custom Logo */}
                         <div className="flex items-center gap-3">
-                            <div className="relative">
-                                <motion.div
-                                    animate={{ y: [0, -4, 0] }}
-                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                                >
-                                    <svg width="32" height="32" viewBox="0 0 16 16" className="pixelated" style={{ imageRendering: "pixelated" }}>
-                                        <rect x="7" y="0" width="2" height="2" fill="#fb923c" />
-                                        <rect x="6" y="2" width="4" height="2" fill="#fbbf24" />
-                                        <rect x="5" y="4" width="6" height="2" fill="#f472b6" />
-                                        <rect x="5" y="6" width="6" height="2" fill="#a78bfa" />
-                                        <rect x="5" y="8" width="6" height="2" fill="#38bdf8" />
-                                        <rect x="3" y="6" width="2" height="4" fill="#34d399" />
-                                        <rect x="11" y="6" width="2" height="4" fill="#34d399" />
-                                        <rect x="5" y="10" width="2" height="2" fill="#f87171" />
-                                        <rect x="9" y="10" width="2" height="2" fill="#f87171" />
-                                        <rect x="6" y="12" width="4" height="2" fill="#fbbf24" />
-                                        <rect x="7" y="14" width="2" height="2" fill="#fb923c" />
-                                    </svg>
-                                </motion.div>
-                                {/* Rocket trail */}
-                                <motion.div
-                                    className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-2 rounded-full"
-                                    style={{ backgroundColor: "#fbbf24" }}
-                                    animate={{ height: [4, 12, 4], opacity: [0.6, 1, 0.6] }}
-                                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                            <motion.div
+                                animate={{ y: [0, -4, 0] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                <img
+                                    src="/logo ghani.png"
+                                    alt="Farid Ghani Logo"
+                                    className="w-8 h-8 sm:w-10 sm:h-10 object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"
                                 />
-                            </div>
+                            </motion.div>
                             <h3
                                 className="text-white text-sm sm:text-base tracking-widest uppercase pixelated"
                                 style={{
@@ -306,28 +289,30 @@ export default function Footer() {
                         >
                             ── Navigate ──
                         </h4>
-                        {quickNav.map((item, i) => (
-                            <motion.button
-                                key={item.id}
-                                onClick={() => scrollToSection(item.id)}
-                                className="group flex items-center gap-2 cursor-pointer"
-                                whileHover={{ x: 6 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                            >
-                                <motion.div
-                                    className="w-1.5 h-1.5"
-                                    style={{ backgroundColor: ["#f472b6", "#a78bfa", "#38bdf8"][i] }}
-                                    animate={{ opacity: [0.4, 1, 0.4] }}
-                                    transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-                                />
-                                <span
-                                    className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider group-hover:text-white transition-colors duration-200 pixelated"
-                                    style={{ fontFamily: "'Courier New', monospace" }}
+                        <div className="flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-3 flex-wrap justify-center">
+                            {quickNav.map((item, i) => (
+                                <motion.button
+                                    key={item.id}
+                                    onClick={() => scrollToSection(item.id)}
+                                    className="group flex items-center gap-2 cursor-pointer"
+                                    whileHover={{ x: 6 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
                                 >
-                                    {item.label}
-                                </span>
-                            </motion.button>
-                        ))}
+                                    <motion.div
+                                        className="w-1.5 h-1.5"
+                                        style={{ backgroundColor: ["#f472b6", "#a78bfa", "#38bdf8"][i] }}
+                                        animate={{ opacity: [0.4, 1, 0.4] }}
+                                        transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+                                    />
+                                    <span
+                                        className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-wider group-hover:text-white transition-colors duration-200 pixelated"
+                                        style={{ fontFamily: "'Courier New', monospace" }}
+                                    >
+                                        {item.label}
+                                    </span>
+                                </motion.button>
+                            ))}
+                        </div>
                     </div>
 
                     {/* ── Social Column ──────────────────────────────────────── */}

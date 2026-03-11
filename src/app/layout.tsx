@@ -11,8 +11,11 @@ const pressStart2P = Press_Start_2P({
 })
 
 export const metadata: Metadata = {
-    title: 'Portfolio',
+    title: 'Portfolio Ghani',
     description: 'Personal Portfolio',
+    icons: {
+        icon: '/logo ghani.png',
+    },
 }
 
 export default function RootLayout({
