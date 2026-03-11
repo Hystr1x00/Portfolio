@@ -47,7 +47,7 @@ export default function XpDesktop() {
             <div
                 className="absolute inset-0 bg-cover bg-center pointer-events-none"
                 style={{
-                    backgroundImage: `url('/walp.png')`
+                    backgroundImage: `url('/walp.webp')`
                 }}
             />
             {/* Desktop Icons Grid */}

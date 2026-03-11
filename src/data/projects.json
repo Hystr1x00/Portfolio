@@ -29,7 +29,7 @@
         "link": "https://hystr1x00.github.io/TumbuhKita/",
         "github": "https://github.com/Hystr1x00/TumbuhKita",
         "images": [
-            "/project/tumbuhkita1.png"
+            "/project/tumbuhkita1.webp"
         ]
     },
     {
@@ -63,8 +63,8 @@
         "link": "#",
         "github": "https://github.com/Hystr1x00/FitRent",
         "images": [
-            "/project/fitrent1.png",
-            "/project/fitrent2.png"
+            "/project/fitrent1.webp",
+            "/project/fitrent2.webp"
         ]
     },
     {
@@ -98,10 +98,10 @@
         "link": "#",
         "github": "https://github.com/PLANTIFY408/TubesPPL/tree/master",
         "images": [
-            "/project/plantify1.png",
-            "/project/plantify2.png",
-            "/project/plantify3.png",
-            "/project/plantify4.png"
+            "/project/plantify1.webp",
+            "/project/plantify2.webp",
+            "/project/plantify3.webp",
+            "/project/plantify4.webp"
         ]
     },
     {
@@ -135,9 +135,9 @@
         "link": "https://galaxymedicalcenter.com/",
         "github": "#",
         "images": [
-            "/project/gmc1.png",
-            "/project/gmc2.png",
-            "/project/gmc3.png"
+            "/project/gmc1.webp",
+            "/project/gmc2.webp",
+            "/project/gmc3.webp"
         ]
     },
     {
@@ -171,10 +171,10 @@
         "link": "https://hawa.blog/",
         "github": "#",
         "images": [
-            "/project/hawa1.png",
-            "/project/hawa2.png",
-            "/project/hawa3.png",
-            "/project/hawa4.png"
+            "/project/hawa1.webp",
+            "/project/hawa2.webp",
+            "/project/hawa3.webp",
+            "/project/hawa4.webp"
         ]
     },
     {
@@ -208,9 +208,9 @@
         "link": "https://hystr1x00.github.io/capstone-fri/",
         "github": "https://github.com/Hystr1x00/capstone-fri",
         "images": [
-            "/project/lms1.png",
-            "/project/lms2.png",
-            "/project/lms3.png"
+            "/project/lms1.webp",
+            "/project/lms2.webp",
+            "/project/lms3.webp"
         ]
     },
     {
@@ -246,10 +246,10 @@
         "link": "https://growell.my.id/",
         "github": "#",
         "images": [
-            "/project/growell1.png",
-            "/project/growell2.png",
-            "/project/growell3.png",
-            "/project/growell4.png"
+            "/project/growell1.webp",
+            "/project/growell2.webp",
+            "/project/growell3.webp",
+            "/project/growell4.webp"
         ]
     },
     {
@@ -282,11 +282,11 @@
         "link": "https://www.ghaniarchives.space/",
         "github": "#",
         "images": [
-            "/project/portfolio1.png",
-            "/project/portfolio2.png",
-            "/project/portfolio3.png",
-            "/project/portfolio4.png",
-            "/project/portfolio5.png"
+            "/project/portfolio1.webp",
+            "/project/portfolio2.webp",
+            "/project/portfolio3.webp",
+            "/project/portfolio4.webp",
+            "/project/portfolio5.webp"
         ]
     }
 ]

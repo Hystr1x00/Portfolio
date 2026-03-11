@@ -171,7 +171,7 @@ export default function Introduction() {
                         transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 100 }}
                     >
                         <Image
-                            src="/cardNoy.png"
+                            src="/cardNoy.webp"
                             alt="Profile Card"
                             width={300}
                             height={400}

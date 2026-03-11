@@ -249,7 +249,7 @@ function AutoSatellite({
         />
         {/* Satellite image */}
         <img
-          src="/satelite.png"
+          src="/satelite.webp"
           alt="Satellite"
           className="pixelated relative z-10"
           style={{ width: size, height: size }}
@@ -321,7 +321,7 @@ function ScrollSatellite({
         />
         {/* Satellite image */}
         <img
-          src="/satelite.png"
+          src="/satelite.webp"
           alt="Satellite"
           className="pixelated relative z-10"
           style={{ width: size, height: size }}

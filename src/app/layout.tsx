@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: 'Portfolio Ghani',
     description: 'Personal Portfolio',
     icons: {
-        icon: '/logo ghani.png',
+        icon: '/logo ghani.webp',
     },
 }
 

@@ -1,12 +1,15 @@
+import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
-import Introduction from "@/components/Introduction";
-import TechStack from "@/components/TechStack";
-import Experience from "@/components/Experience";
-import Organizations from "@/components/Organizations";
-import RetroTV from "@/components/RetroTV";
-import Footer from "@/components/Footer";
 import SideNav from "@/components/SideNav";
 import SplashScreen from "@/components/SplashScreen";
+
+// Dynamically import heavy below-the-fold components
+const Introduction = dynamic(() => import("@/components/Introduction"));
+const TechStack = dynamic(() => import("@/components/TechStack"));
+const Experience = dynamic(() => import("@/components/Experience"));
+const RetroTV = dynamic(() => import("@/components/RetroTV"));
+const Organizations = dynamic(() => import("@/components/Organizations"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (
@@ -24,4 +27,3 @@ export default function Home() {
     </SplashScreen>
   );
 }
-

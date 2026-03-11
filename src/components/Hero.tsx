@@ -59,7 +59,7 @@ const PixelBird = ({
     >
       <div className={`relative ${mobileSize} ${desktopSize}`}>
         <Image
-          src={`/bird/${frame}.png`}
+          src={`/bird/${frame}.webp`}
           alt="Flying Bird"
           fill
           // If flying Left (startX > endX), and original faces Left, NO flip.
@@ -164,7 +164,7 @@ export default function Hero() {
   useEffect(() => {
     for (let i = 1; i <= 7; i++) {
       const img = new window.Image();
-      img.src = `/bird/${i}.png`;
+      img.src = `/bird/${i}.webp`;
     }
   }, []);
 
@@ -177,7 +177,7 @@ export default function Hero() {
       {/* Background Layer (Slowest) */}
       <motion.div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat w-full h-full pixelated"
-        style={{ backgroundImage: "url('/hero_bg.jpg')", y: bgY, scale: 1.3 }}
+        style={{ backgroundImage: "url('/hero_bg.webp')", y: bgY, scale: 1.3 }}
       />
 
       {/* Birds Layer */}
@@ -214,7 +214,7 @@ export default function Hero() {
       {/* Floating Clouds Layer (Parallax Far) */}
       <motion.div style={{ y: cloudFarY }} className="absolute inset-0 pointer-events-none z-5">
         <PixelCloud
-          src="/cloud_1.png"
+          src="/cloud_1.webp"
           x="-15%"
           y="20%"
           duration={5}
@@ -228,7 +228,7 @@ export default function Hero() {
       {/* Floating Clouds Layer (Parallax Near) */}
       <motion.div style={{ y: cloudNearY }} className="absolute inset-0 pointer-events-none z-20">
         <PixelCloud
-          src="/cloud_2.png"
+          src="/cloud_2.webp"
           x="75%"
           y="0%"
           duration={7}
@@ -238,7 +238,7 @@ export default function Hero() {
           bobDistance={-60}
         />
         <PixelCloud
-          src="/cloud_1.png"
+          src="/cloud_1.webp"
           x="62%"
           y="50%"
           duration={6}
@@ -248,7 +248,7 @@ export default function Hero() {
           bobDistance={40}
         />
         <PixelCloud
-          src="/cloud_2.png"
+          src="/cloud_2.webp"
           x="38%"
           y="65%"
           duration={8}
@@ -258,7 +258,7 @@ export default function Hero() {
           bobDistance={-45}
         />
         <PixelCloud
-          src="/cloud_1.png"
+          src="/cloud_1.webp"
           x="-5%"
           y="60%"
           duration={9}
@@ -345,7 +345,7 @@ export default function Hero() {
             }}
           >
             <Image
-              src="/noy.png"
+              src="/noy.webp"
               alt="Pixel Character"
               fill
               className="object-contain pixelated drop-shadow-[0_8px_0_rgba(0,0,0,0.5)]"

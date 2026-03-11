@@ -253,7 +253,7 @@ export default function Footer() {
                                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                             >
                                 <img
-                                    src="/logo ghani.png"
+                                    src="/logo ghani.webp"
                                     alt="Farid Ghani Logo"
                                     className="w-8 h-8 sm:w-10 sm:h-10 object-contain filter drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"
                                 />
