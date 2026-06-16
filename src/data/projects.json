@@ -288,5 +288,109 @@
             "/project/portfolio4.webp",
             "/project/portfolio5.webp"
         ]
+    },
+    {
+        "id": 9,
+        "title": "Kisora",
+        "type": "AI Marketing Website",
+        "desc": "Kisora is an AI Marketing Generator that provides intelligent content creation and marketing automation. It generates compelling content, schedules posts, and optimizes your marketing with AI to increase engagement and save time.",
+        "tech": [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Laravel"
+        ],
+        "status": "Development",
+        "featured": true,
+        "metrics": [
+            [
+                "Public",
+                "Draft"
+            ],
+            [
+                "Public",
+                "Status"
+            ],
+            [
+                "Development",
+                "Status"
+            ]
+        ],
+        "color": "#374151",
+        "link": "https://kisora.id/",
+        "github": "#",
+        "images": [
+            "/project/kisora1.png",
+            "/project/kisora2.png",
+            "/project/kisora3.png",
+            "/project/kisora4.png"
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Meetrec",
+        "type": "Mobile App",
+        "desc": "Meetrec is a mobile app designed to capture meeting audio, automatically generate accurate transcripts, and provide concise summaries of the discussions.",
+        "tech": [
+            "React Native",
+            "TypeScript"
+        ],
+        "status": "Development",
+        "featured": true,
+        "metrics": [
+            [
+                "Private",
+                "Access"
+            ],
+            [
+                "In Progress",
+                "Status"
+            ],
+            [
+                "Development",
+                "Phase"
+            ]
+        ],
+        "color": "#0ea5e9",
+        "link": "#",
+        "github": "#",
+        "images": [
+            "/project/meetrec1.png",
+            "/project/meetrec2.png"
+        ]
+    },
+    {
+        "id": 11,
+        "title": "DailyAyah",
+        "type": "Mobile App",
+        "desc": "DailyAyah is a Locket-style social app that generates relevant Quranic verses based on photos taken by the user. It features a community system to connect with friends, and gamification elements like missions, challenges, and badges to encourage daily engagement.",
+        "tech": [
+            "React Native",
+            "TypeScript"
+        ],
+        "status": "Development",
+        "featured": true,
+        "metrics": [
+            [
+                "Private",
+                "Access"
+            ],
+            [
+                "In Progress",
+                "Status"
+            ],
+            [
+                "Development",
+                "Phase"
+            ]
+        ],
+        "color": "#10b981",
+        "link": "#",
+        "github": "#",
+        "images": [
+            "/project/dailyayah1.png",
+            "/project/dailyayah2.png",
+            "/project/dailyayah3.png"
+        ]
     }
 ]
