@@ -115,11 +115,20 @@ export default function XpWindow({ project, onClose }: XpWindowProps) {
                         <div className="flex flex-col h-full animate-in fade-in duration-300 w-full overflow-hidden">
                             {/* Main Image Display */}
                             <div className="flex-1 flex flex-col items-center justify-center border border-gray-400 p-2 bg-[#ece9d8] shadow-[2px_2px_5px_rgba(0,0,0,0.3)] mb-4 relative min-h-[300px]">
-                                <div className="border border-gray-500 bg-white w-full h-full flex items-center justify-center overflow-hidden">
+                                <div className="border border-gray-500 bg-black w-full h-full flex items-center justify-center overflow-hidden relative">
+                                    {/* Blurred background for vertical/narrow images */}
+                                    <div 
+                                        className="absolute inset-0 opacity-50 blur-xl scale-110 transition-all duration-300"
+                                        style={{
+                                            backgroundImage: `url(${project.images[currentImageIndex]})`,
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center'
+                                        }}
+                                    />
                                     <img
                                         src={project.images[currentImageIndex]}
                                         alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                                        className="max-h-full max-w-full object-contain"
+                                        className="max-h-full max-w-full object-contain relative z-10 drop-shadow-2xl"
                                     />
                                 </div>
 
